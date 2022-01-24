@@ -1,5 +1,7 @@
 package film;
 
+import film.exception.CantSetBorrowerIfFilmIsNotBorrowed;
+
 public class Film {
     private final Integer id;
     private String title;
@@ -7,6 +9,9 @@ public class Film {
     private String release;
     private String producer;
     private Support support;
+
+    private boolean status = false;
+    private String borrower = null;
     
     private static Integer count = 1;
 
@@ -65,11 +70,26 @@ public class Film {
         this.support = support;
     }
 
-    public static Integer getCount() {
-        return count;
+    public String getBorrower() {
+        return borrower;
     }
 
-    public static void setCount(Integer count) {
-        Film.count = count;
+    public void setBorrower(String borrower) throws CantSetBorrowerIfFilmIsNotBorrowed {
+        if (status || borrower == null) {
+            this.borrower = borrower;
+        }
+
+        throw new CantSetBorrowerIfFilmIsNotBorrowed();
+    }
+
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) throws CantSetBorrowerIfFilmIsNotBorrowed {
+        if (!status) {
+            setBorrower(null);
+        }
+        this.status = status;
     }
 }
