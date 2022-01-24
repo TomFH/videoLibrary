@@ -1,21 +1,31 @@
 package film;
 
+import client.Client;
+import com.opencsv.bean.CsvBindByPosition;
 import film.exception.CantSetBorrowerIfFilmIsNotBorrowed;
 
 public class Film {
     private final Integer id;
+
+    @CsvBindByPosition(position = 0)
     private String title;
+    @CsvBindByPosition(position = 1)
     private String actor;
+    @CsvBindByPosition(position = 2)
     private String release;
+    @CsvBindByPosition(position = 3)
     private String producer;
+    @CsvBindByPosition(position = 4)
     private Support support;
 
+    @CsvBindByPosition(position = 5)
     private boolean status = false;
-    private String borrower = null;
+    @CsvBindByPosition(position = 6)
+    private Client borrower = null;
     
     private static Integer count = 1;
 
-    public Film(String title, String actor, String release, String producer, Support support) {
+    public Film(String title, String actor, String release, String producer, Support support, boolean status, Client borrower) {
         this.title = title;
         this.actor = actor;
         this.release = release;
@@ -70,11 +80,11 @@ public class Film {
         this.support = support;
     }
 
-    public String getBorrower() {
+    public Client getBorrower() {
         return borrower;
     }
 
-    public void setBorrower(String borrower) throws CantSetBorrowerIfFilmIsNotBorrowed {
+    public void setBorrower(Client borrower) throws CantSetBorrowerIfFilmIsNotBorrowed {
         if (status || borrower == null) {
             this.borrower = borrower;
         }

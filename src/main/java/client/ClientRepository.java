@@ -5,7 +5,7 @@ import client.exception.ClientNotFound;
 import java.util.ArrayList;
 
 public class ClientRepository {
-    private static ArrayList<Client> clients = importClients();
+    private static final ArrayList<Client> clients = importClients();
 
     private static ArrayList<Client> importClients() {
         ArrayList<Client> clients = null;

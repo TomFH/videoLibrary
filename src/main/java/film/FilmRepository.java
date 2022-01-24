@@ -6,7 +6,7 @@ import film.exception.FilmNotFound;
 import java.util.ArrayList;
 
 public class FilmRepository {
-    private static ArrayList<Film> films = importFilms();
+    private static final ArrayList<Film> films = importFilms();
 
     private static ArrayList<Film> importFilms() {
         ArrayList<Film> films = null;
